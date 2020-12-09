@@ -74,7 +74,7 @@ class HdfAttrListCtrl(wx.ListCtrl):
     aid=h5py.h5a.open(hid,index=event.Data)
     val=GetAttrVal(aid)
     if type(val)!=np.ndarray:
-      print val
+      print (val)
       return
     frame=HdfGridFrame(self,aid.name,val)
     frame.Show(True)

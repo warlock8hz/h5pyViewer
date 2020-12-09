@@ -28,7 +28,7 @@ import pylab as plt #used for the colormaps
 try:
   from libDetXR.procMoment import ProcMoment
 except ImportError as e:
-  print 'ImportError: '+e.message
+  print ('ImportError: '+e.message)
 
 
 #from scipy import ndimage as ndi
@@ -226,7 +226,7 @@ class MPLCanvasImg(FigureCanvas):
   def OnMouse(self, event):
     for k in dir(event):
       if k[0]!='_':
-        print k,getattr(event,k)
+        print (k,getattr(event,k))
 
 class DlgColBarSetupOld(wx.Dialog):
   def __init__(self,parent):
@@ -257,7 +257,7 @@ class DlgColBarSetupOld(wx.Dialog):
 
   def OnBtnOk(self, event):
     event.Skip()#do not consume (use event to close the window and sent return code)
-    print 'OnBtnOk'
+    print ('OnBtnOk')
     parent=self.GetParent()
     canvas=parent.canvas
     colBar=canvas.colBar
@@ -476,7 +476,7 @@ class HdfImageFrame(wx.Frame):
       dlg = wx.FileDialog(self, "Choose valid mask file (e.g. pilatus_valid_mask.mat)", os.getcwd(), '','MATLAB files (*.mat)|*.mat|all (*.*)|*.*', wx.FD_OPEN|wx.FD_CHANGE_DIR)
       if dlg.ShowModal() == wx.ID_OK:
         fnMatMsk = dlg.GetPath()
-        print 'OnOpen',fnMatMsk
+        print ('OnOpen',fnMatMsk)
       dlg.Destroy()
       if not fnMatMsk:
         return
@@ -524,11 +524,11 @@ class HdfImageFrame(wx.Frame):
     try:
       data.ravel()[pm.mskIdx]=0
     except AttributeError as e:
-      print e
+      print (e)
     try:
       data=data[pm.roi]
     except AttributeError as e:
-      print e
+      print (e)
     #data=np.log(data+1)
     #data[100:110,500:510]=1000 #y,x
     #data[650:850,700:850]=0 #y,x
@@ -552,7 +552,7 @@ class HdfImageFrame(wx.Frame):
     ang=0.5*np.arctan2(2*u11,(u20-u02))/(2*np.pi)*360. #orientation value 0..1
     exc=np.sqrt(1-l1/l0) #eccentricity :circle=0: http://en.wikipedia.org/wiki/Eccentricity_%28mathematics%29
 
-    print 'xb:%g yb:%g cov:%g %g %g %g  ang:%g exc:%g'%((xm, ym)+tuple(cov.ravel())+(ang,exc))
+    print ('xb:%g yb:%g cov:%g %g %g %g  ang:%g exc:%g'%((xm, ym)+tuple(cov.ravel())+(ang,exc)))
     #fig, ax = plt.subplots()
     #ax.imshow(data,vmax=100,interpolation='nearest')
     #plt.show()

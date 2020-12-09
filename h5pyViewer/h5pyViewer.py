@@ -18,15 +18,15 @@ from hdfImage import  *
 try:
   from hdfImageGL import  *
 except ImportError as e:
-  print 'ImportError: '+e.message
+  print ('ImportError: '+e.message)
 try:
   from FrmPyFAI import  *
 except ImportError as e:
-  print 'ImportError: '+e.message
+  print ('ImportError: '+e.message)
 try:
   from FrmProcRoiStat import ProcRoiStatFrame
 except ImportError as e:
-  print 'ImportError: '+e.message
+  print ('ImportError: '+e.message)
 
 import utilities as ut
 
@@ -48,7 +48,7 @@ class AboutFrame(wx.Frame):
     bmp = wx.StaticBitmap(panel,-1,wx.Bitmap(os.path.join(imgDir,'splash1.png'), wx.BITMAP_TYPE_ANY ), (30,st0.Position[1]+st0.Size[1]+10))
 
     for k,v in os.environ.iteritems():
-      print k,'=',v
+      print (k,'=',v)
 
 class HdfTreePopupMenu(wx.Menu):
   def __init__(self, wxObjSrc):
@@ -130,13 +130,13 @@ class HdfTreePopupMenu(wx.Menu):
     dlg = wx.FileDialog(wxTree, "Choose valid mask file (e.g. pilatus_valid_mask.mat)", os.getcwd(), '','MATLAB files (*.mat)|*.mat|all (*.*)|*.*', wx.FD_OPEN|wx.FD_CHANGE_DIR)
     if dlg.ShowModal() == wx.ID_OK:
       fnValMsk= dlg.GetPath()
-      print 'OnOpen',fnValMsk
+      print ('OnOpen',fnValMsk)
     dlg.Destroy()
     if not fnValMsk: return
     dlg = wx.FileDialog(wxTree, "Choose ROI mask file (e.g. pilatus_integration_mask.mat)", os.getcwd(), '','MATLAB files (*.mat)|*.mat|all (*.*)|*.*', wx.FD_OPEN|wx.FD_CHANGE_DIR)
     if dlg.ShowModal() == wx.ID_OK:
       fnIntegMsk = dlg.GetPath()
-      print 'OnOpen',fnIntegMsk
+      print ('OnOpen',fnIntegMsk)
     dlg.Destroy()
     if not fnIntegMsk: return
     #fnMatRoi='/scratch/detectorData/cSAXS_2013_10_e14608_georgiadis_3D_for_Marianne/analysis/data/pilatus_integration_mask.mat'
@@ -188,14 +188,14 @@ import userSample as us;reload(us);us.test1(hid)
     wxTree,wxNode=self.wxObjSrc
     lbl=wxTree.GetItemText(wxNode)
     hid=wxTree.GetPyData(wxNode)
-    print HdfViewerFrame.GetPropertyStr(wxTree,wxNode)
+    print (HdfViewerFrame.GetPropertyStr(wxTree,wxNode))
 
   def OnItem2(self, event):
-    print 'OnItem2'
+    print ('OnItem2')
     pass
 
   def OnItem3(self, event):
-    print 'OnItem3'
+    print ('OnItem3')
     pass
 
 class HdfViewerFrame(wx.Frame):

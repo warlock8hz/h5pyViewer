@@ -76,9 +76,11 @@ def getVersion():
     p = subprocess.Popen('git describe --match ''v*.*.*'' --long', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     retval = p.wait()
     res=p.stdout.readline()
-    res=res[1:-1].rsplit('-',1)
-    ver=res[0].replace('-','.')
-    gitcmt=res[1][1:]
+    #bytes(res, 'utf-8')
+    line = res.decode('utf-8').rstrip()
+    line=line[1:-1].rsplit('-',1)
+    ver=line[0].replace('-','.')
+    gitcmt=line[1][1:]
   print (':'+ver+':'+gitcmt+':')
   return (ver,gitcmt)
 
@@ -95,7 +97,7 @@ class MyINSTALL_LIB (distutils.command.install_lib.install_lib):
     binDir=self.distribution.command_obj['install'].install_scripts
     print ('instDir',instDir,'binDir',binDir)
     if platform.system()=='Linux':
-      mod=0755
+      mod=755
       for fn in('h5pyViewer','hdfAttrib','hdfGrid','hdfImageGL','hdfImage','hdfTree'):
         fnInst=os.path.join(instDir,fn+'.py')
         fnBin=os.path.join(binDir,fn)

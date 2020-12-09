@@ -44,9 +44,9 @@ class ProcRoiStatFrame(HdfImageGLFrame):
     self.prs=prs=ProcRoiStat()
     prs.SetRoiMat((fnValMsk,fnIntegMsk),raw.shape)
     prs.SetProcess('avg')
-    print 'numnber of ROI,',prs.roiLenArr.size,'Total number of pixels',prs.roiIdxArr.size
+    print ('numnber of ROI,',prs.roiLenArr.size,'Total number of pixels',prs.roiIdxArr.size)
     prs.Process(raw)
-    print prs.resArr[0,:].max(),prs.resArr[0,:].min()
+    print (prs.resArr[0,:].max(),prs.resArr[0,:].min())
     canvas.data=prs.resArr
     #.reshape(prs.mskNumSeg,-1)
     #canvas.data=np.rot90(prs.resArr[0,:].reshape(-1,prs.mskNumSeg))

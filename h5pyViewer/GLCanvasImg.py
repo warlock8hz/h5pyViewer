@@ -29,7 +29,7 @@ def MplAddColormap(m,lut):
       kG,vG,dummy=zip(*lstG)
       kB,vB,dummy=zip(*lstB)
     except TypeError as e:
-      print 'failed to add '+m+' (probably some lambda function)'
+      print ('failed to add '+m+' (probably some lambda function)')
       #print lut
       return
     kLst=set()
@@ -54,7 +54,7 @@ def MplAddAllColormaps(colMapNameLst=None):
   try:
     import matplotlib.cm as cm
   except ImportError as e:
-    print 'ImportError: '+e.message
+    print ('ImportError: '+e.message)
   if not colMapNameLst:
     colMapNameLst=[m for m in cm.datad if not m.endswith("_r")]
   for m in colMapNameLst:
@@ -92,9 +92,9 @@ class GLCanvasImg(wx.glcanvas.GLCanvas):
       return
     if event.ButtonDown():
       self.mouseStart=(np.array(event.GetPosition()),self.imgCoord.copy())
-      print 'drag Start'
+      print ('drag Start')
     elif event.ButtonUp():
-      print 'drag End'
+      print ('drag End')
       del self.mouseStart
     else:
       try:
@@ -180,11 +180,11 @@ class GLCanvasImg(wx.glcanvas.GLCanvas):
     pass # Do nothing, to avoid flashing on MSWin
 
   def OnSize(self, event):
-    print 'OnSize'
+    print ('OnSize')
     wx.CallAfter(self.DoSetViewport)
     event.Skip()
   def DoSetViewport(self):
-    print 'DoSetViewport'
+    print ('DoSetViewport')
     size = self.GetClientSize()
     self.SetCurrent(self.context)
     glViewport(0, 0, size.width, size.height)
@@ -363,8 +363,8 @@ class DlgColBarSetup(wx.Dialog):
           MplAddColormap(k,lut)
           v=glumpy.colormap.__dict__[k]
         except ImportError as e:
-          print e.message
-          print "don't have colormap "+k
+          print (e.message)
+          print ("don't have colormap "+k)
           continue
       if isinstance(v,glumpy.colormap.Colormap):
         colMapLst.append(k)

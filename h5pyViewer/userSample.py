@@ -7,14 +7,14 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 def plot1d(hid):
-  print hid
+  print (hid)
   ds=h5py.Dataset(hid)
   ds
   plt.plot(ds[0,:])
   plt.show()
 
 def test1(hid):
-  print hid
+  print (hid)
   ds=h5py.Dataset(hid)
   ds
   plt.plot(ds[:,1])
@@ -45,7 +45,7 @@ def test3(hid):
     for idxAttr in range(numAttr):
       aid=h5py.h5a.open(hid,index=idxAttr)
       val=GetAttrVal(aid)
-      print aid.name,val
+      print (aid.name,val)
       if aid.name=='ofsTime':
         plt.plot(val)
         plt.show()

@@ -6,3 +6,7 @@ build/
 .project
 .pydevproject
 
+
+.idea/
+
+venv/

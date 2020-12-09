@@ -248,12 +248,12 @@ class HdfGridFrame(wx.Frame):
     if event.ShiftDown():
       col=event.RowOrCol
       sz=self.grid.GetColSize(col)
-      print 'OnColSize',col,sz
+      print ('OnColSize',col,sz)
       self.grid.SetDefaultColSize(sz, True)   
       self.grid.ForceRefresh()    
     
   def OnSetFormat(self,event):
-    print 'OnSetFormat'
+    print ('OnSetFormat')
     
     fmt=getattr(self.grid.Table,'cellFormat','')
     dlg=DlgFormatSetup(self,fmt)
